@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="endeavour, endeavoursliet, sliet, endeavor, endeavorsliet, techfest, techfest20, madhuram, longowal, sangrur, delhi, iitbombay, iitdelhi, iit, nit, cfti, cuturalfest, mhrd, govt">
+    <meta name="description" content="Official Website of Team Endeavour, Sliet Longowal">
+    <meta name="author" content="Aayush Kartik, Antara Singh">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Members Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/ProfileStyle.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color:black !important;">
+        <a class="navbar-brand" href="#">
+            <img src="/images/logo1.png"  class="d-inline-block align-top navimg" alt="" loading="lazy">
+          </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Create BlogPost</a>
+            <a class="nav-link" href="/logout">Logout</a>
+          </div>
+        </div>
+      </nav>
+      <div class="flexBox">
+        <div class="card-imgs-top" style="background-image: url('./uploads/<%= image %>');";></div>
+        <div class="name"><%= name %></div>
+        <div class="type"><%= member %></div>
+        <div class="type"><%=year %></div>
+        <a href="/member/<%= userid %>" class="profile">View profile</a>
+        <div class="update">Update your information from here</div>
+
+      </div>
+      
+      <div class="container">  
+        <form action="/InfoUpdate" method="post">
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Trade </label>
+                    <select class="form-control" id="exampleFormControlSelect1" style="border: 1px solid;" name="userTrade" value="<%= user.trade %>" required>
+                        <option value="">none</option>
+                        <option>Electrical Engineering</option>
+                      <option>Computer science engineering</option>
+                      <option>Electronics and communication </option>
+                      <option>Mechanical Engineering</option>
+                    </select>
+                     </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Position in Team </label>
+                    <select class="form-control" id="exampleFormControlSelect1" style="border: 1px solid;" name="userPosition" value="<%=user.teamPosition%>" required>
+                      <option value="">None</option>  
+                      <option>Member</option>
+                      <option>Alumni</option>
+                      <option>Cordinator </option>
+                      <option>Core Committee</option>
+                      <option>Programming Head</option>
+                      <option>Electronics Head</option>
+                      <option>Financial Head</option>
+                      <option>Mechanical & Fabrication Head</option>
+                      <option>Assets Head</option>
+                      <option>Marketing & Promotions Head</option>
+                    </select>
+                  </div>
+            <!-- skills section -->
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Facebook Profile Link</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="fb" style="border: 1px solid;" value="<%= user.FBlink%>" ><%= user.FBlink%></textarea>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">LinkedIn Profile link</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="linkedin" style="border: 1px solid;" value="<%=user.LinkedIn%>"><%=user.LinkedIn%></textarea>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Programming Languages</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="userLanguage" style="border: 1px solid;" placeholder="ex. Java, C++, Python etc." value="<%=user.languages %>" ><%=user.languages %></textarea>
+            </div>
+        
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Areas of interests </label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="userSkills" style="border: 1px solid;" placeholder="eg. Machine learning, CAD/CAM, Web Development etc." value="<%=user.skills %>" ><%=user.skills %></textarea>
+                    
+            </div>
+              <!-- about yourself     -->
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">About Yourself </label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="userAbout" style="border: 1px solid;" value="<%= user.about%>"><%= user.about%></textarea>
+              </div>
+        <!-- internship done -->
+        <div class="form-group">
+          
+                <label for="exampleFormControlTextarea1">Internship/Training </label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="userIntern" style="border: 1px solid;" value="<%= user.internship%>" ><%= user.internship%></textarea>
+              
+                </div>
+              <!-- project work -->
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Project Work </label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="userProject" style="border: 1px solid;" value="<%= user.projectWork%>"><%= user.projectWork%></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Current Status</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="userCurrent" style="border: 1px solid;" value="<%= user.Cstatus%>" placeholder="eg. Pursuing Higer Education from other Institution, doing job, Current year of studying etc "><%= user.Cstatus%></textarea>
+                  </div>
+              <button class="btn btn-danger" type="submit" name="button123">Update Fields</button>
+                </form>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>

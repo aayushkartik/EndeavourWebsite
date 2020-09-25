@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<title>Member's profile</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="endeavour, endeavoursliet, sliet, endeavor, endeavorsliet, techfest, techfest20, madhuram, longowal, sangrur, delhi, iitbombay, iitdelhi, iit, nit, cfti, cuturalfest, mhrd, govt">
+<meta name="description" content="Official Website of Team Endeavour, Sliet Longowal">
+<meta name="author" content=" Antara Singh">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/85d5344d5f.js" crossorigin="anonymous"></script>
+
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+
+
+<body class="w3-black">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+            <img src="/uploads/<%=image %>" style=" height: 35rem;
+            width:90%;
+            margin:15px auto;
+            margin-bottom: 10px;">
+      <div class="w3-black w3-text-grey w3-card-4">
+
+        <div class="w3-display-container">
+          
+          
+          <div class="w3-display-bottomleft w3-container w3-text-white">
+            <h1><%= userName %></h1>
+          </div>
+        </div>
+        <div class="w3-container">
+                <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-red"></i><%= trade %></p>
+                <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-red"></i><%=email %></p>
+                <p><i class="fa fa-user-tie fa-fw w3-margin-right w3-large w3-text-red"></i><%= teamPosition %></p>
+                <p><i class="fa fa-calendar-alt fa-fw w3-margin-right w3-large w3-text-red"></i><%= joiningYear %></p>
+                <div class="social-links">
+                    <a href="<%= FBlink %>" target="<%= FBlink %>" class="ln-social">
+                    <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="<%=LinkedIn %>" target="<%= LinkedIn %>"class="ln-social">
+                    <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+          <hr>
+
+          <p class="w3-large"><b><i class="fa fa-pencil-ruler fa-fw w3-margin-right w3-text-red"></i>Skills</b></p>
+          <p><%=skills %></p>
+          
+
+          <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-red"></i>Language Proficiency</b></p>
+          <p>English</p>
+          <div class="w3-light-grey w3-round-xlarge">
+            <div class="w3-round-xlarge w3-red" style="height:24px;width:95%"></div>
+          </div>
+          <p>Hindi</p>
+          <div class="w3-light-grey w3-round-xlarge">
+            <div class="w3-round-xlarge w3-red" style="height:24px;width:100%"></div>
+          </div>
+         
+          <br>
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+    
+      <div class="w3-container w3-card w3-black w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-address-card fa-fw w3-margin-right w3-xxlarge w3-text-red"></i>About</h2>
+        <div class="w3-container">
+          <p><%= about %></p>
+          <hr>
+        </div>
+        
+      </div>
+     
+      <div class="w3-container w3-card w3-black w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-laptop-code fa-fw w3-margin-right w3-xxlarge w3-text-red"></i>Programming Language</h2>
+        <div class="w3-container">
+          <p><%= languages %></p>
+          <hr>
+        </div>
+        
+      </div>
+     
+      <div class="w3-container w3-card w3-black  w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-address-book fa-fw w3-margin-right w3-xxlarge w3-text-red"></i>Project Work</h2>
+        <div class="w3-container">
+          <p><%= projectWork %></p>
+          <hr>
+        </div>
+        
+      </div>
+      
+      <div class="w3-container w3-card w3-black  w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-red"></i>Internship</h2>
+        <div class="w3-container">
+          <p><%= internship %></p>
+          <hr>
+        </div>
+        
+      </div>
+
+     
+      <div class="w3-container w3-card w3-black  w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-xxlarge w3-text-red"></i>Current Status</h2>
+        <div class="w3-container">
+          <p><%= Cstatus %></p>
+          <hr>
+        </div>
+        
+      </div>
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-red w3-center w3-margin-top">
+  <p>Find me on social media.</p>
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+</footer>
+
+</body>
+</html>
