@@ -48,6 +48,8 @@ mongoose.set("useCreateIndex",true);
 const userSchema=new mongoose.Schema({
     userName:String,
     email:String,
+    regno:String, // this is new RegExp()
+    pastexp:String, // this is new field for past experience
     password:String,
     trade:String,
     image:String,
@@ -69,6 +71,7 @@ passport.use(Form.createStrategy());
 passport.serializeUser(Form.serializeUser());
 passport.deserializeUser(Form.deserializeUser());
 
+////// GETTING HOME ROUTE 
 app.get("/", function(req,res){
     if(req.isAuthenticated()){
         res.redirect("/MembersPage");
@@ -77,7 +80,9 @@ app.get("/", function(req,res){
         res.render("index");
       }
 });
+////////////////////////////////////////////////////////////////////////////////////
 
+// GETTING PROFILES //////////////////////////////////
 app.get("/profile", function(req, res){
     if(req.isAuthenticated()){
 
@@ -102,10 +107,10 @@ app.get("/profile", function(req, res){
       else{
         res.redirect("/MembersLogin");
       }
-
-     
 })
+///////////////////////////////////////////////////////////////////////////////////////////
 
+// PAGE AFTER IF THE MEMBER IS LOGGED IN
 app.get("/MembersPage", function(req,res){
     if(req.isAuthenticated()){
       
@@ -115,12 +120,16 @@ app.get("/MembersPage", function(req,res){
         res.redirect("/MembersLogin");
       }
 });
+/////////////////////////////////////////////////////////////////////////////////////////////
 
+// HANDLING LOGOUT OF THE USER
 app.get("/logout", function(req,res){
     req.logOut();
     res.redirect("/");
   });
+//////////////////////////////////////////////////////////////////////////////
 
+///// HANDLING THE UPDATION OF THE FORM FIELDS
   app.post("/InfoUpdate", function(req,res){
     if(req.isAuthenticated()){
 
@@ -152,12 +161,14 @@ app.get("/logout", function(req,res){
     res.redirect("/MembersLogin");
   }
   });
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
+// DISPLAYING THE TEAM PAGE 
 app.get("/team", function(req,res){
     Form.find({ teamPosition:'Member'},function(err,results){
-        Form.find({ teamPosition:'Cordinator'},function(err,results0){
+        Form.find({ teamPosition:'Coordinator'},function(err,results0){
             Form.find({ teamPosition:'Alumni'},function(err,results1){
-                Form.find({ teamPosition:'Core Committee'},function(err,results2){
+                Form.find({ teamPosition:'Committee Member'},function(err,results2){
                    Form.find({ teamPosition:{ $regex: 'Head'}},function(err,results3){
                     res.render("aboutTeam",{hello:results,hello1:results2,hello2:results0,hello3:results3,hello4:results1});
                 });
@@ -166,17 +177,21 @@ app.get("/team", function(req,res){
      });
  });
 });
+//////////////////////////////////////////////////
 
-
-
+///////REGISTRATION FORM 
 app.get("/MembersRegister",function(req,res){
     res.render("home");
 });
+//////////////////////////////////////////////////////
 
+///LOGIN SCREEN
 app.get("/MembersLogin",function(req,res){
     res.render("loginScreen");
 });
+//////////////////////////////////////////////////////////////////
 
+///// REGISTRTAION FIELD RECEIVE
 app.post("/formsubmit", upload, function(req,res){
     var imgFile= req.file.filename;
     var naam = _.startCase(req.body.userName);
@@ -190,6 +205,8 @@ Form.findOne({userName:naam},function(err,foundName){
                     email:req.body.userEmail,
                     trade:req.body.userTrade,
                     FBlink:req.body.fb,
+                    regno:req.body.userReg,
+                    pastexp:req.body.userWork,
                     LinkedIn:req.body.linkedin,
                     image:imgFile,
                     languages:req.body.userLanguage,
@@ -214,10 +231,8 @@ Form.findOne({userName:naam},function(err,foundName){
         }
   }
 })
-
-    
  });
-
+/////////////////////////////////////////////////////////////////////////////////////////
 
 // express routing parameter
 app.get("/member/:memberId",function(req,res){
@@ -225,6 +240,7 @@ app.get("/member/:memberId",function(req,res){
     Form.findById(requestedMemberId,function(err,post){
         res.render("memberprofile",{
             userName:post.userName,
+            RegNo:post.regno,
             email:post.email,
             trade:post.trade,
             image:post.image,
@@ -241,7 +257,9 @@ app.get("/member/:memberId",function(req,res){
         });
     });
 });
+////////////////////////////////////////////////////////////////////////////////
 
+//GETTING IN LOGIN DETAILS AND AUTHNTICATING
 app.post("/login", function(req,res){
     const user = new Form({
       username: req.body.username,
@@ -258,13 +276,13 @@ app.post("/login", function(req,res){
       }
     });
   });
-
-app.get("/result",function(req,res){
-    Form.find({},function(err,results){
-        console.log(results);
-        res.render("disp",{ hello:results});
-    });
-});
+//////////////////////////////////////////////////
+// app.get("/result",function(req,res){
+//     Form.find({},function(err,results){
+//         console.log(results);
+//         res.render("disp",{ hello:results});
+//     });
+// });
 
 app.listen(port, function(req,res){
     console.log("server started at port 3000");
