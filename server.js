@@ -249,6 +249,7 @@ app.get("/member/:memberId",function(req,res){
             FBlink:post.FBlink,
             LinkedIn:post.LinkedIn,
             skills:post.skills,
+            PastWork:post.pastexp,
             about:post.about,
             joiningYear:post.joiningYear,
             projectWork:post.projectWork,

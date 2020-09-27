@@ -44,9 +44,13 @@
                     <select class="form-control" id="exampleFormControlSelect1" style="border: 1px solid;" name="userTrade" value="<%= user.trade %>" required>
                         <option value="">none</option>
                         <option>Electrical Engineering</option>
-                      <option>Computer science engineering</option>
-                      <option>Electronics and communication </option>
-                      <option>Mechanical Engineering</option>
+                        <option>Computer Science & Engineering</option>
+                        <option>Electronics & Communication Engineering </option>
+                        <option>Electronics & Instrumentation Engineering </option>
+                        <option>Mechanical Engineering</option>
+                        <option>Mechanical Engineering(Manufacturing)</option>
+                        <option>Welding Technology</option>
+                        <option>Chemical Engineering</option>
                     </select>
                      </div>
                   <div class="form-group">
@@ -55,14 +59,14 @@
                       <option value="">None</option>  
                       <option>Member</option>
                       <option>Alumni</option>
-                      <option>Cordinator </option>
-                      <option>Core Committee</option>
+                      <option>Coordinator </option>
+                      <option>Committee Member</option>
                       <option>Programming Head</option>
-                      <option>Electronics Head</option>
-                      <option>Financial Head</option>
-                      <option>Mechanical & Fabrication Head</option>
-                      <option>Assets Head</option>
-                      <option>Marketing & Promotions Head</option>
+                      <option>Circuit Designing & Electronics Head</option>
+                      <option>Treasurer(Financial Head)</option>
+                      <option>Mechanical Design, Analysis & Fabrication Head</option>
+                      <option>Assets Manager(Head)</option>
+                      <option>Public Relations Head</option>
                     </select>
                   </div>
             <!-- skills section -->
@@ -101,6 +105,12 @@
                 <label for="exampleFormControlTextarea1">Project Work </label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="userProject" style="border: 1px solid;" value="<%= user.projectWork%>"><%= user.projectWork%></textarea>
                 </div>
+                <div class="form-group">
+  
+                  <label for="exampleFormControlTextarea1">Past Working Experience *(if any)*</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="userWork" style="border: 1px solid;" ></textarea>
+                
+                  </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1">Current Status</label>
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="userCurrent" style="border: 1px solid;" value="<%= user.Cstatus%>" placeholder="eg. Pursuing Higer Education from other Institution, doing job, Current year of studying etc "><%= user.Cstatus%></textarea>
