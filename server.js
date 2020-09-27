@@ -142,7 +142,7 @@ app.get("/logout", function(req,res){
       teamPosition:req.body.userPosition,
       skills:req.body.userSkills,
       about:req.body.userAbout,
-     
+     pastexp:req.body.userWork,
       projectWork:req.body.userProject,
       internship:req.body.userIntern,
       Cstatus:req.body.userCurrent},
