@@ -9,7 +9,7 @@ const passport = require("passport");
 const crypto = require("crypto");
 const passportLocalMongoose  = require("passport-local-mongoose");
 const session = require("express-session");
-
+const cloudinary = require("cloudinary").v2;
 
 const app = express();
 port = process.env.PORT || 3000;
@@ -18,7 +18,11 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("partial"));
-
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
 var Storage = multer.diskStorage({
     destination: "./public/uploads/",
     filename: (req,file,cb)=>{
@@ -193,6 +197,7 @@ app.get("/MembersLogin",function(req,res){
 
 ///// REGISTRTAION FIELD RECEIVE
 app.post("/formsubmit", upload, function(req,res){
+  // console.log(req.file);
     var imgFile= req.file.filename;
     var naam = _.startCase(req.body.userName);
 
@@ -200,31 +205,33 @@ Form.findOne({userName:naam},function(err,foundName){
   console.log(foundName);
   if(!err){
         if(!foundName){
-                  Form.register({username:req.body.userEmail,
-                    userName:naam,
-                    email:req.body.userEmail,
-                    trade:req.body.userTrade,
-                    FBlink:req.body.fb,
-                    regno:req.body.userReg,
-                    pastexp:req.body.userWork,
-                    LinkedIn:req.body.linkedin,
-                    image:imgFile,
-                    languages:req.body.userLanguage,
-                    teamPosition:req.body.userPosition,
-                    skills:req.body.userSkills,
-                    about:req.body.userAbout,
-                    joiningYear:req.body.userYear,
-                    projectWork:req.body.userProject,
-                    internship:req.body.userIntern,
-                    Cstatus:req.body.userCurrent}, req.body.password,function(err,user){
-                    if(err){
-                        console.log(err);
-                        res.redirect("/MembersRegister");
-                    } 
-                    else{
-                        res.render("success");
-                    }
-                });
+          cloudinary.uploader.upload(req.file.path, function(error, result) { 
+            Form.register({username:req.body.userEmail,
+              userName:naam,
+              email:req.body.userEmail,
+              trade:req.body.userTrade,
+              FBlink:req.body.fb,
+              regno:req.body.userReg,
+              pastexp:req.body.userWork,
+              LinkedIn:req.body.linkedin,
+              image:result.url,
+              languages:req.body.userLanguage,
+              teamPosition:req.body.userPosition,
+              skills:req.body.userSkills,
+              about:req.body.userAbout,
+              joiningYear:req.body.userYear,
+              projectWork:req.body.userProject,
+              internship:req.body.userIntern,
+              Cstatus:req.body.userCurrent}, req.body.password,function(err,user){
+              if(err){
+                  console.log(err);
+                  res.redirect("/MembersRegister");
+              } 
+              else{
+                  res.render("success");
+              }
+          });
+         });
         }else{
           console.log("user already exist!")
           res.render("fail");
