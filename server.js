@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const multer  = require('multer');
 const _ = require('lodash');
 const passport = require("passport");
-const crypto = require("crypto");
 const passportLocalMongoose  = require("passport-local-mongoose");
 const session = require("express-session");
 const cloudinary = require("cloudinary").v2;
@@ -18,11 +17,15 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("partial"));
+
+// HERE CLOUDINARY IS CONFIGURED
 cloudinary.config({ 
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
   api_secret: process.env.API_SECRET,
 });
+////////////////////////////////////////////////////////////////
+
 var Storage = multer.diskStorage({
     destination: "./public/uploads/",
     filename: (req,file,cb)=>{
@@ -197,8 +200,6 @@ app.get("/MembersLogin",function(req,res){
 
 ///// REGISTRTAION FIELD RECEIVE
 app.post("/formsubmit", upload, function(req,res){
-  // console.log(req.file);
-    var imgFile= req.file.filename;
     var naam = _.startCase(req.body.userName);
 
 Form.findOne({userName:naam},function(err,foundName){
@@ -285,12 +286,7 @@ app.post("/login", function(req,res){
     });
   });
 //////////////////////////////////////////////////
-// app.get("/result",function(req,res){
-//     Form.find({},function(err,results){
-//         console.log(results);
-//         res.render("disp",{ hello:results});
-//     });
-// });
+
 
 app.listen(port, function(req,res){
     console.log("server started at port 3000");
